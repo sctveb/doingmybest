@@ -1,13 +1,24 @@
 import React from 'react';
-import Counter from '../components/Counter';
-import CounterContainer from '../containers/CounterContainer';
+import CounterListContainer from './CounterListContainer';
+import Buttons from '../components/Buttons';
 
-const App = () => {
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import { getRandomColor } from '../utils';
+
+const mapDispatchToProps = (dispatch) => ({
+  onCreate: () => dispatch(actions.create(getRandomColor())),
+  onRemove: (index) => dispatch(actions.remove(index)),
+});
+
+const App = (props) => {
+  const { onCreate, onRemove } = props;
   return (
     <div>
-      <CounterContainer />
+      <Buttons onCreate={onCreate} onRemove={onRemove} />
+      <CounterListContainer />
     </div>
   );
 };
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);
