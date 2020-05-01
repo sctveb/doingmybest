@@ -1,9 +1,3 @@
-// import { combineReducers } from 'redux';
-
-// const reducers = combineReducers({});
-
-// export default reducers;
-
 import * as types from '../actions/ActionTypes';
 
 const initialState = {
